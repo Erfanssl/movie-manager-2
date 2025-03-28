@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const MovieItem = ({ id, title, index, currentPage, numberOfPages, myRating, IMDB, onDelete, onEdit }) => {
+const MovieItem = ({ id, title, index, currentPage, numberOfPages, myRating, IMDB, onDelete, onEdit, createdAt, updatedAt }) => {
     const createType = () => {
         const rating = myRating;
         if (rating >= 0 && rating <= 2.5 ) return { text: 'W', bg: 'bg-W' };
@@ -20,7 +20,11 @@ const MovieItem = ({ id, title, index, currentPage, numberOfPages, myRating, IMD
     };
     return (
         <tr className="border-top">
-            <td className="movies__td pb-4">{  currentPage && indexCalculator() + '.'} { title }</td>
+            <td className="movies__td pb-4">
+                <p>{  currentPage && indexCalculator() + '.'} { title }</p>
+                { createdAt && <p className="m-0">Created: { createdAt }</p> }
+                { updatedAt && <p className="m-0">Updated: { new Date(parseInt(updatedAt.replaceAll(',', ''))).toLocaleDateString() }</p> }
+            </td>
             <td className="movies__td pl-4">{ myRating }</td>
             <td className="movies__td pl-4">{ IMDB }</td>
             <td className={createType().bg + ' badge ml-3 mt-3 p-2'}>{ createType().text }</td>

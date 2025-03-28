@@ -184,6 +184,8 @@ class Movies extends Component {
                                     IMDB={ item.IMDB.val }
                                     myRating={ item.myRating }
                                     currentPage={ this.state.currentPage }
+                                    createdAt={ item.createdAt }
+                                    updatedAt={ item.updatedAt }
                                     numberOfPages="10"
                                     onDelete={ () => this.handleDelete(item.id, index, 10) }
                                     onEdit={ true }
